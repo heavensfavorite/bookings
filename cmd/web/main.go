@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/heavensfavorite/bookings/pkg/config"
-	"github.com/heavensfavorite/bookings/pkg/handlers"
-	"github.com/heavensfavorite/bookings/pkg/render"
+	"github.com/heavensfavorite/bookings/internal/config"
+	"github.com/heavensfavorite/bookings/internal/handlers"
+	"github.com/heavensfavorite/bookings/internal/render"
 
 	"github.com/alexedwards/scs/v2"
 )
