@@ -1,0 +1,11 @@
+mode: set
+github.com/heavensfavorite/bookings/cmd/web/main.go:24.13,26.16 2 0
+github.com/heavensfavorite/bookings/cmd/web/main.go:26.16,28.3 1 0
+github.com/heavensfavorite/bookings/cmd/web/main.go:31.2,39.16 4 0
+github.com/heavensfavorite/bookings/cmd/web/main.go:39.16,41.3 1 0
+github.com/heavensfavorite/bookings/cmd/web/main.go:44.18,60.16 10 1
+github.com/heavensfavorite/bookings/cmd/web/main.go:60.16,63.3 2 0
+github.com/heavensfavorite/bookings/cmd/web/main.go:65.2,74.12 6 1
+github.com/heavensfavorite/bookings/cmd/web/middleware.go:10.45,20.2 3 1
+github.com/heavensfavorite/bookings/cmd/web/middleware.go:23.50,25.2 1 1
+github.com/heavensfavorite/bookings/cmd/web/routes.go:12.49,37.2 18 1
