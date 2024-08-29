@@ -10,6 +10,7 @@ import (
 
 	"github.com/heavensfavorite/bookings/internal/config"
 	"github.com/heavensfavorite/bookings/internal/handlers"
+	"github.com/heavensfavorite/bookings/internal/helpers"
 	"github.com/heavensfavorite/bookings/internal/models"
 	"github.com/heavensfavorite/bookings/internal/render"
 
@@ -75,8 +76,8 @@ func run() error {
 
 	repo := handlers.NewRepo(&app)
 	handlers.NewHandlers(repo)
-
 	render.NewTemplates(&app)
+	helpers.NewHelpers(&app)
 
 	return nil
 }
