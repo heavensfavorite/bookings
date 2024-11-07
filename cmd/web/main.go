@@ -72,7 +72,7 @@ func run() (*driver.DB, error) {
 
 	// connect to database
 	log.Println("Connecting to database")
-	db, err := driver.ConnectSQL("host=localhost port=5432 dbname=bookings user=tcs password=")
+	db, err := driver.ConnectSQL("host=localhost port=5432 dbname=bookings user=BABYOCTO password=")
 	if err != nil {
 		log.Fatal("Cannot connect to database! Dying...")
 	}
@@ -89,7 +89,7 @@ func run() (*driver.DB, error) {
 
 	repo := handlers.NewRepo(&app, db)
 	handlers.NewHandlers(repo)
-	render.NewTemplates(&app)
+	render.NewRenderer(&app)
 	helpers.NewHelpers(&app)
 
 	return db, nil
