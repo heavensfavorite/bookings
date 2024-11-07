@@ -8,14 +8,13 @@ import (
 	"os"
 	"time"
 
+	"github.com/alexedwards/scs/v2"
 	"github.com/heavensfavorite/bookings/internal/config"
 	"github.com/heavensfavorite/bookings/internal/driver"
 	"github.com/heavensfavorite/bookings/internal/handlers"
 	"github.com/heavensfavorite/bookings/internal/helpers"
 	"github.com/heavensfavorite/bookings/internal/models"
 	"github.com/heavensfavorite/bookings/internal/render"
-
-	"github.com/alexedwards/scs/v2"
 )
 
 const portNumber = ":8080"
@@ -33,7 +32,7 @@ func main() {
 	}
 	defer db.SQL.Close()
 
-	fmt.Println("Staring application on port #{portNumber}")
+	fmt.Println(fmt.Sprintf("Staring application on port %s", portNumber))
 
 	srv := &http.Server{
 		Addr:    portNumber,
@@ -51,7 +50,8 @@ func run() (*driver.DB, error) {
 	gob.Register(models.Reservation{})
 	gob.Register(models.User{})
 	gob.Register(models.Room{})
-	gob.Register(models.Restriction{})
+	gob.Register(models.RoomRestriction{})
+
 	// change this to true when in production
 	app.InProduction = false
 
@@ -71,12 +71,13 @@ func run() (*driver.DB, error) {
 	app.Session = session
 
 	// connect to database
-	log.Println("Connecting to database")
+	log.Println("Connecting to database...")
 	db, err := driver.ConnectSQL("host=localhost port=5432 dbname=bookings user=BABYOCTO password=")
 	if err != nil {
 		log.Fatal("Cannot connect to database! Dying...")
 	}
-	log.Println("Connected to database")
+
+	log.Println("Connected to database!")
 
 	tc, err := render.CreateTemplateCache()
 	if err != nil {
