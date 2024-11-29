@@ -36,7 +36,7 @@ func main() {
 
 	srv := &http.Server{
 		Addr:    portNumber,
-		Handler: routes(&app),
+		Handler: routes(),
 	}
 
 	err = srv.ListenAndServe()
@@ -53,7 +53,7 @@ func run() (*driver.DB, error) {
 	gob.Register(models.RoomRestriction{})
 
 	// change this to true when in production
-	app.InProduction = false
+	app.InProduction = true
 
 	infoLog = log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
 	app.InfoLog = infoLog
