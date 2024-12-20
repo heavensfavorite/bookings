@@ -41,7 +41,7 @@ func (m *postgresDBRepo) InsertReservation(res models.Reservation) (int, error) 
 }
 
 // InsertRoomRestriction inserts a room restriction into the database
-func (m *postgresDBRepo) InsertRoomReservation(r models.RoomRestriction) error {
+func (m *postgresDBRepo) InsertRoomRestriction(r models.RoomRestriction) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
