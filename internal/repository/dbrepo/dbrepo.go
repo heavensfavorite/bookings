@@ -4,7 +4,6 @@ import (
 	"database/sql"
 
 	"github.com/heavensfavorite/bookings/internal/config"
-	"github.com/heavensfavorite/bookings/internal/models"
 	"github.com/heavensfavorite/bookings/internal/repository"
 )
 
@@ -14,9 +13,9 @@ type postgresDBRepo struct {
 }
 
 // InsertRoomRestriction implements repository.DatabaseRepo.
-func (m *postgresDBRepo) InsertRoomRestriction(r models.RoomRestriction) error {
+/* func (m *postgresDBRepo) InsertRoomRestriction(r models.RoomRestriction) error {
 	panic("unimplemented")
-}
+} */
 
 func NewPostgresRepo(conn *sql.DB, a *config.AppConfig) repository.DatabaseRepo {
 	return &postgresDBRepo{
