@@ -12,10 +12,10 @@ type postgresDBRepo struct {
 	DB  *sql.DB
 }
 
-// InsertRoomRestriction implements repository.DatabaseRepo.
-/* func (m *postgresDBRepo) InsertRoomRestriction(r models.RoomRestriction) error {
-	panic("unimplemented")
-} */
+type testDBRepo struct {
+	App *config.AppConfig
+	DB  *sql.DB
+}
 
 func NewPostgresRepo(conn *sql.DB, a *config.AppConfig) repository.DatabaseRepo {
 	return &postgresDBRepo{
@@ -23,3 +23,11 @@ func NewPostgresRepo(conn *sql.DB, a *config.AppConfig) repository.DatabaseRepo 
 		DB:  conn,
 	}
 }
+
+func NewTestingRepo(a *config.AppConfig) repository.DatabaseRepo {
+	return &testDBRepo{
+		App: a,
+		
+	}
+}
+
