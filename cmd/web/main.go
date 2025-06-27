@@ -32,7 +32,12 @@ func main() {
 	}
 	defer db.SQL.Close()
 
-	fmt.Println(fmt.Sprintf("Starting application on port %s", portNumber))
+	defer close(app.Mailchan)
+
+	fmt.Println("Starting mail listener...")
+	listenForMail()
+
+	fmt.Printf("Starting application on port %s", portNumber)
 
 	srv := &http.Server{
 		Addr:    portNumber,
@@ -69,7 +74,7 @@ func run() (*driver.DB, error) {
 
 	// connect to database
 	log.Println("Connecting to database...")
-	db, err := driver.ConnectSQL("host=localhost port=5432 dbname=bookings user=tcs password=")
+	db, err := driver.ConnectSQL("host=localhost port=5432 dbname=bookings user=BABYOCTO password=")
 	if err != nil {
 		log.Fatal("Cannot connect to database! Dying...")
 	}
