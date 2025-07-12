@@ -71,11 +71,11 @@ func TestMain(m *testing.M) {
 
 func listenForMail() {
 	go func() {
-		for {
-			_ = <-app.Mailchan
+		for msg := range app.Mailchan {
+			// optionally process msg
+			_ = msg
 		}
 	}()
-
 }
 
 func getRoutes() http.Handler {
