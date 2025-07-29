@@ -6,14 +6,14 @@
     <div class="col">
       <h1>Login</h1>
 
-      <form method="post" action="/user/login">
+      <form method="post" action="/user/login" novalidate>
         <input type="hidden" name="csrf_token" value="{{.CSRFToken}}" />
         <div class="form-group mt-3">
           <label for="email">Email</label>
           {{with .Form.Errors.Get "email"}}
           <label class="text-danger">{{.}}</label>
           {{ end }}
-          <input class="form-control {{with .Form.Errrors.Get "email"}} is-valid
+          <input class="form-control {{with .Form.Errors.Get "email"}} is-valid
           {{ end }}" id="email" autocomplete="off" type="email" name="email"
           value="" required>
         </div>
