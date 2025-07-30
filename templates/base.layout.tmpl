@@ -83,7 +83,7 @@
             <a
               class="nav-link dropdown-toggle"
               href="#"
-              id="navbarDropdownMenuLink"
+              id="navbarDropdown"
               role="button"
               data-toggle="dropdown"
               aria-haspopup="true"
@@ -91,7 +91,7 @@
             >
               Rooms
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="/generals-quarters"
                 >General's Quarters</a
               >
@@ -106,13 +106,25 @@
           </li>
           <li class="nav-item">
             {{if eq .IsAuthenticated 1}}
+            <li class="nav-item dropdown">
             <a
-              class="nav-link"
-              href="/user/logout"
-              tabindex="-1"
-              aria-disabled="true"
-              >Logout</a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
             >
+              Admin
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/admin/dashboard"
+                >Dashboard</a
+              >
+              <a class="dropdown-item" href="/user/logout">Logout</a>
+            </div>
+          </li>
             {{else}}
             <a
               class="nav-link"
