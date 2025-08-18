@@ -2,8 +2,10 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 16.8 (Postgres.app)
--- Dumped by pg_dump version 16.8 (Postgres.app)
+\restrict oyPfnfrevJRenU8GLpedSw1UjYUEUhTbbngWfGPvXgXbRQMbTIJC6KuSCD0SMLf
+
+-- Dumped from database version 16.10 (Postgres.app)
+-- Dumped by pg_dump version 16.10 (Postgres.app)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -392,4 +394,6 @@ ALTER TABLE ONLY public.room_restrictions
 --
 -- PostgreSQL database dump complete
 --
+
+\unrestrict oyPfnfrevJRenU8GLpedSw1UjYUEUhTbbngWfGPvXgXbRQMbTIJC6KuSCD0SMLf
 
