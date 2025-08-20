@@ -405,7 +405,7 @@ func (m *Repository) PostShowLogin(w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 
 		m.App.Session.Put(r.Context(), "error", "Invalid login credentials")
-		http.Redirect(w, r, "user/login", http.StatusSeeOther)
+		http.Redirect(w, r, "/user/login", http.StatusSeeOther)
 		return
 	}
 
@@ -458,6 +458,13 @@ func (m *Repository) AdminNewReservations(w http.ResponseWriter, r *http.Request
 	})
 }
 
+// AdminShowReservation shows the reservation in the admin tool
+func (m *Repository) AdminShowReservation(w http.ResponseWriter, r *http.Request) {
+	// get reservation from the database
+	render.Template(w, r, "admin-reservations-show.page.tmpl", &models.TemplateData{})
+}
+
+// AdminReservationsCalendar displays the reservation calender
 func (m *Repository) AdminReservationsCalendar(w http.ResponseWriter, r *http.Request) {
 	render.Template(w, r, "admin-reservations-calendar.page.tmpl", &models.TemplateData{})
 }
