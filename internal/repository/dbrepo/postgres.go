@@ -20,7 +20,7 @@ func (m *postgresDBRepo) InsertReservation(res models.Reservation) (int, error) 
 
 	var newID int
 
-	stmt := `insert into reservations (first_name, last_name, email, phone, start_date, end_date, room_id, created_at, updated_at) values ($1, $2, $3, $4, $5, $6, $7, $8, $9) returning id`
+	stmt := `insert into reservations (first_name, last_name, email, phone, start_date, end_date, room_id, created_at, updated_at, processed) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) returning id`
 
 	err := m.DB.QueryRowContext(ctx, stmt,
 		res.FirstName,
@@ -203,7 +203,7 @@ func (m *postgresDBRepo) UpdateUser(u models.User) error {
 	defer cancel()
 
 	query := `
-		update users set first_name = $1, last_name = $2, email = $3, access_level = $4, updated_at = $5, where id = $6`
+		update users set first_name = $1, last_name = $2, email = $3, access_level = $4, updated_at = $5 where id = $6`
 
 	_, err := m.DB.ExecContext(ctx, query,
 		u.FirstName,
@@ -347,7 +347,7 @@ func (m *postgresDBRepo) AllNewReservations() ([]models.Reservation, error) {
 	return reservations, nil
 }
 
-//GetReservationByID returns one reservation by ID
+// GetReservationByID returns one reservation by ID
 func (m *postgresDBRepo) GetReservationByID(id int) (models.Reservation, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
