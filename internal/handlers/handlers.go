@@ -90,7 +90,6 @@ func (m *Repository) Reservation(w http.ResponseWriter, r *http.Request) {
 
 	data := make(map[string]interface{})
 	data["reservation"] = res
-
 	render.Template(w, r, "make-reservation.page.tmpl", &models.TemplateData{
 		Form:      forms.New(nil),
 		Data:      data,
@@ -472,6 +471,7 @@ func (m *Repository) AdminShowReservation(w http.ResponseWriter, r *http.Request
 
 	stringMap := make(map[string]string)
 	stringMap["src"] = src
+
 	// get reservation from the database
 	res, err := m.DB.GetReservationByID(id)
 	if err != nil {
@@ -487,6 +487,45 @@ func (m *Repository) AdminShowReservation(w http.ResponseWriter, r *http.Request
 		Data:      data,
 		Form:      forms.New(nil),
 	})
+}
+
+func (m *Repository) AdminPostShowReservation(w http.ResponseWriter, r *http.Request) {
+	err := r.ParseForm()
+	if err != nil {
+		helpers.ServerError(w, err)
+		return
+	}
+
+	exploded := strings.Split(r.RequestURI, "/")
+	id, err := strconv.Atoi(exploded[4])
+	if err != nil {
+		helpers.ServerError(w, err)
+		return
+	}
+
+	src := exploded[3]
+
+	stringMap := make(map[string]string)
+	stringMap["src"] = src
+
+	res, err := m.DB.GetReservationByID(id)
+	if err != nil {
+		helpers.ServerError(w, err)
+		return
+	}
+
+	res.FirstName = r.Form.Get("first_name")
+	res.LastName = r.Form.Get("last_name")
+	res.Email = r.Form.Get("email")
+	res.Phone = r.Form.Get("phone")
+
+	err = m.DB.UpdateReservation(res)
+	if err != nil {
+		helpers.ServerError(w, err)
+		return
+	}
+	m.App.Session.Put(r.Context(), "flash", "Changes saved")
+	http.Redirect(w, r, fmt.Sprintf("/admin/reservations-%s", src), http.StatusSeeOther)
 }
 
 // AdminReservationsCalendar displays the reservation calender
