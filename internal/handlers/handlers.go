@@ -435,6 +435,9 @@ func (m *Repository) AdminAllReservations(w http.ResponseWriter, r *http.Request
 		return
 	}
 
+	// Add debug print here
+	fmt.Printf("Reservations count: %d\n", len(reservations))
+
 	data := make(map[string]interface{})
 	data["reservations"] = reservations
 
