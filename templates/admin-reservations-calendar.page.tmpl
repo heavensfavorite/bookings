@@ -47,20 +47,34 @@ Reservation Calendar
           <tr>
             {{range $index := iterate $dim}}
             <td class = "text-center">
+              {{ if gt (index $reservations (printf "%s-%s-%s" $curYear $curMonth (add $index 1))) 0}}
+              <a href="/admin/reservations/cal/{{index $reservations (printf "%s-%s-%d" $curYear $curMonth (add $index 1))}}">
+                <span class="text-danger">R</span>
+              </a>
+
+              {{else}}
+
+
+
               <input 
                 {{ if gt (index $blocks (printf "%s-%s-%s" $curYear $curMonth (add $index 1))) 0}}
                   checked
                   name="remove_block_{{$roomID}} {{printf "%s-%s-%d" $curYear $curMonth (add $index 1)}}"
                   value="{{index $blocks (printf "%s-%s-%s" $curYear $curMonth (add $index 1))}}"
 
-              {{else}}
+                {{else}}
                 name="add_block_{{$roomID}}_{{printf "%s-%s-%d" $curYear $curMonth (add $index 1)}}"
-              {{end}}
+                {{end}}
                   type="checkbox">
+
+              {{end}} 
+
+
+
             </td>
             {{end}}
           </tr>
-        </tabel>
+        </table>
       </div>
 
     {{end}}
