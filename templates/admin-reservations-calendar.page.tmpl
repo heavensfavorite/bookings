@@ -28,6 +28,14 @@ Reservation Calendar
 
   <div class="clearfix"></div>
 
+
+    <form method="post" action="/admin/reservations-calendar">
+      <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+      <input type="hidden" name="m" value="{{index .StringMap "this_month"}}">
+      <input type="hidden" name="y" value="{{index .StringMap "this_month_year"}}">
+
+
+
     {{range $rooms}}
     {{$roomID := .ID}}
     {{$blocks := index $.Data (printf "block_map_%d" .ID)}}
@@ -57,15 +65,16 @@ Reservation Calendar
 
 
               <input 
-                {{ if gt (index $blocks (printf "%s-%s-%s" $curYear $curMonth (add $index 1))) 0}}
+                  {{ if gt (index $blocks (printf "%s-%s-%s" $curYear $curMonth (add $index 1))) 0}}
                   checked
                   name="remove_block_{{$roomID}} {{printf "%s-%s-%d" $curYear $curMonth (add $index 1)}}"
                   value="{{index $blocks (printf "%s-%s-%s" $curYear $curMonth (add $index 1))}}"
 
-                {{else}}
-                name="add_block_{{$roomID}}_{{printf "%s-%s-%d" $curYear $curMonth (add $index 1)}}"
-                {{end}}
-                  type="checkbox">
+                  {{else}}
+                    name="add_block_{{$roomID}}_{{printf "%s-%s-%d" $curYear $curMonth (add $index 1)}}"
+                    value="1"
+                  {{end}}
+                     type="checkbox">
 
               {{end}} 
 
@@ -78,6 +87,11 @@ Reservation Calendar
       </div>
 
     {{end}}
+
+    <hr>
+    <input type="submit" class="btn btn-primary" value="Save Changes">
+
+    </form>
 
 </div>
 {{ end }}
