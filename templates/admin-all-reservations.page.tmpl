@@ -31,13 +31,13 @@ All Reservations
       <tr>
         <td>{{.ID}}</td>
         <td>
-          <a href="/admin/reservations/all/{{.ID}}">
+          <a href="/admin/reservations/all/{{.ID}}/show">
             {{.LastName}}
           </a>
         </td>
         <td>{{.Room.RoomName}}</td>
-        <td>{{ humanDate .StartDate }}</td>
-        <td>{{ humanDate .EndDate }}</td>
+        <td>{{ humanDate.StartDate }}</td>
+        <td>{{ humanDate.EndDate }}</td>
       </tr>
 
       {{
