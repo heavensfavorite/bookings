@@ -39,7 +39,7 @@ Reservation
     <div class="form-group">
       <label for="last_name">Last Name:</label>
       {{with .Form.Errors.Get "last_name"}}
-      <label class="text-danger">{{.}}</label>
+      <label class="text-success">{{.}}</label>
       {{ end }}
       <input class="form-control
       {{with .Form.Errors.Get "last_name"}} is-invalid {{ end }}" id="last_name"
@@ -51,7 +51,7 @@ Reservation
     <div class="form-group">
       <label for="email">Email:</label>
       {{with .Form.Errors.Get "email"}}
-      <label class="text-danger">{{.}}</label>
+      <label class="text-success">{{.}}</label>
       {{ end }}
       <input class="form-control
       {{with .Form.Errors.Get "email"}} is-invalid {{ end }}" id="email"
